@@ -1,0 +1,13 @@
+{% extends "base.html"  %}
+{% block content %}
+<div id="maininner" class="grid-box">
+<section id="content" class="white">
+	<div>
+		{{ page_from_menu.text|safe }}
+	</div>
+</section>
+</div>
+
+{% include 'b_news.html' %}
+
+{% endblock %}

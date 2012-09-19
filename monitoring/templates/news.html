@@ -1,0 +1,44 @@
+{% extends 'base.html'  %}
+{% block content %}
+
+<div id="maininner" class="grid-box">
+	<section id="content" class="grid-block">
+	<div>
+	{% if news_id > 0 %}
+		<header>
+			<h1 class="title">{{ article.title }}</h1>
+		</header>
+		<div class="content clearfix">
+			{{ article.text }}
+		</div>
+	{% else %}
+		<div class="grid-box width50">		
+			{% for a in list_article %}
+				{% if forloop.counter0|divisibleby:"2" != 0  %}
+			<article class="item">
+				<header>
+				<h1><a href="{% url monitoring.views.news a.id %}">{{ a.title }}</a></h1>
+					<p class="meta"><time>{{ a.date_published }}</time></p>
+					<div class="content clearfix">{{ a.anons }}</div>
+				</header>
+			</article>	
+				{% endif %}
+			{% endfor %}
+		</div>
+		<div class="grid-box width50">		
+			{% for a in list_article %}
+				{% if forloop.counter0|divisibleby:"2" == 0 %}
+			<article class="item">
+				<header>
+					<h1><a href="{% url monitoring.views.news a.id %}">{{ a.title }}</a></h1>
+					<p class="meta"><time>{{ a.date_published }}</time></p>
+					<div class="content clearfix">{{ a.anons }}</div>
+				</header>
+			</article>	
+				{% endif %}
+			{% endfor %}
+		<div>
+	{% endif %}
+	</section>
+</div>
+{% endblock %}

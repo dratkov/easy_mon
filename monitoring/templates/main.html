@@ -1,0 +1,30 @@
+{% extends "base.html"  %}
+{% block content %}
+<div id="maininner" class="grid-box">
+<section id="content" class="white">
+<div id="slideset-32-504cd2652bae0" class="wk-slideset wk-slideset-default" data-widgetkit="slideset" data-options="{&quot;style&quot;:&quot;default&quot;,&quot;width&quot;:&quot;auto&quot;,&quot;height&quot;:&quot;auto&quot;,&quot;effect&quot;:&quot;slide&quot;,&quot;index&quot;:0,&quot;autoplay&quot;:1,&quot;interval&quot;:3000,&quot;items_per_set&quot;:1,&quot;navigation&quot;:1,&quot;buttons&quot;:0,&quot;title&quot;:1,&quot;duration&quot;:300}" style="width: 655px; visibility: visible; ">
+<div>
+	<div class="sets" style="height: 350px; ">
+		{% for s_img in slider_img %}
+		<ul class="set" style="height: 335px; -webkit-transform: scale(1, 1); ">
+			<li style="position: absolute; display: block; left: 15px; ">
+				<article class="wk-content">
+				<img src="/media/{{ s_img.img }}" width="600" height="300" alt="">
+				</article>
+			</li>
+		</ul>
+		{% endfor %}
+	</div>
+	<ul class="nav icon">
+	{% for s_img in slider_img %}
+		<li class=""><span></span></li>
+	{% endfor %}
+	</ul>
+</div>
+</div>
+</section>
+</div>
+
+{% include 'b_news.html' %}
+
+{% endblock %}

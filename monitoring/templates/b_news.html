@@ -1,0 +1,20 @@
+<aside id="sidebar-a" class="grid-box">
+
+<div class="grid-box width100 grid-v">
+	<div class="module mod-box  deepest">
+		<h3 class="module-title"><span class="color">Последние</span> новости</h3>	
+		<ul class="line line-icon">
+			{% for a in last_article %}
+			<li>
+				<a href="{% url monitoring.views.news a.id %}">{{ a.title }}</a>
+				<p class="meta"><time>{{ a.date_published }}</time></p>
+			</li>
+			{% endfor %}
+		</ul>		
+		<br/>
+		<a href="{% url monitoring.views.news  %}">Все новости</a>
+	</div>
+</div>
+
+</aside>
+
