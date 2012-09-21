@@ -1,6 +1,12 @@
+{% extends 'base.html'  %}
+{% block content %}
+<div id="maininner" class="grid-box">
+	<section id="content" class="grid-block">
 {% block content %}
 <h1>Активация</h1>
 Привет, {{ account }}!<br/>
 Ваша учетная запись активирована. <a href="{% url auth_login %}">Заходите</a> на сайт.
 <br/><br/>
+	</section>
+</div>
 {% endblock %}

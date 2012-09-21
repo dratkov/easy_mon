@@ -1,6 +1,9 @@
+{% extends 'base.html'  %}
 {% block content %}
+<div id="maininner" class="grid-box">
+	<section id="content" class="grid-block">
 <h1>Регистрация</h1>
-<form method="post" action="">{% csrf_token %}
+<form class="style" method="post" action="">{% csrf_token %}
 <dl class="register">
 {% for field in form %}
     <dt>{{ field.label_tag }}</dt>
@@ -10,6 +13,10 @@
     </dd>
 {% endfor %}
 </dl>
-<input type="submit" value="Зарегистрироваться" / class="clearfix">
+<div class="button">
+	<button type="submit" value="Зарегистрироваться" class="clearfix">Зарегистрироваться</button>
+</div>
 </form>
+</section>
+</div>
 {% endblock %}
