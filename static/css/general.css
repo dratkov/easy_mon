@@ -12,7 +12,7 @@ solid #1B1B1D;border-radius:5px;background:#08080A}a:not([class]):active,a:not([
 15px 0 0;float:left}#toolbar .float-right
 .module{margin:0
 0 0 15px;float:right}#headerbar
-.module{max-width:300px;margin-right:0;float:right}#logo,#logo>img,#menu{float:left}#search{float:right}#banner{position:absolute;top:0;right:-200px}#footer{position:relative;text-align:center}.module,#content{margin:15px} select #content{padding:25px} #header,#footer{margin:0
+.module{max-width:300px;margin-right:0;float:right}#logo,#logo>img,#menu{float:left}#search{float:right}#banner{position:absolute;top:0;right:-200px}#footer{position:relative;text-align:center}.module,#content{margin:15px} section, #content{padding:25px} #header,#footer{margin:0
 15px}#breadcrumbs{margin:0
 0 15px 0}#footer
 .module{margin:0}body#page{background:#08080A}#block-toolbar{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAICAYAAADjoT9jAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAAB50RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNS4xqx9I6wAAABZ0RVh0Q3JlYXRpb24gVGltZQAwMS8yMS8xMRTK2QYAAAAvSURBVCiRY/z//z8DLQEjAwODAC0tYGFgYBCktQU098HQt4CmccDIwMBwlZYWAAAjfQRMhTCRAQAAAABJRU5ErkJggg==) 0 100% repeat-x,
