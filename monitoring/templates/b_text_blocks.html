@@ -1,0 +1,11 @@
+{% load my_filters %}
+
+{% for text_block in text_blocks %}
+<div class="grid-box width100 grid-v">
+	<div class="module mod-box  deepest">
+		<h3 class="module-title"><span class="color">{{ text_block.title|split:" "|first }}</span> {{ text_block.title|split:" "|slice:"1:"|join:" " }}</h3>
+		{{ text_block.text|replace:"<ul>, <ul class='check'>"|safe }}
+	</div>
+
+</div>
+{% endfor %}

@@ -4,10 +4,14 @@
 	<section id="content" class="grid-block">
 <h1>Авторизация</h1>
 
+
 {% if user.is_authenticated %}
 Что такое, {{ user.username }}? Вы же уже авторизорваны.
 Впрочем, всегда можно <a href="{% url auth_logout %}">выйти</a>.<br/><br/>
 {% else %}
+
+{% load loginza_widget %}
+{% loginza_iframe providers_set="google,facebook,twitter,vkontakte" lang="ru" %}
 
 {% if form.non_field_errors %}
 {{ form.non_field_errors }}
