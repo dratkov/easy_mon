@@ -52,13 +52,23 @@ class Params(models.Model):
 
 class TextBlock(models.Model):
     text = models.TextField(verbose_name="Текст")
+    title = models.CharField(max_length=100, verbose_name="Заголовок блока")
+    is_main = models.BooleanField(verbose_name="Большой блок на главной странице")
 
     def __unicode__(self):
-        return self.text[0:30]
+        return self.title
 
     class Meta:
         verbose_name = "Текстовый блок"
         verbose_name_plural = "Текстовые блоки"
+
+
+class TextBlockAdminForm(ModelForm):
+    class Meta:
+          model = TextBlock
+          widgets = {
+               'text': Textarea(attrs={'cols': 120, 'rows': 30}),
+          }
 
 
 class Menu(models.Model):
