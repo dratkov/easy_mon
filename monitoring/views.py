@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render_to_response
-from monitorings.models import SliderImg, Article, Menu
+from monitorings.models import SliderImg, Article, Menu, TextBlock
 from django.template import RequestContext
 
 
@@ -10,7 +10,11 @@ def profile(request):
 
 def home(request):
     slider_img = SliderImg.objects.all()
-    return render_to_response('main.html', {'slider_img': slider_img}, context_instance=RequestContext(request))
+    main_text_block = None
+    main_text_blocks = TextBlock.objects.filter(is_main=1)
+    if main_text_blocks:
+        main_text_block = main_text_blocks[0]
+    return render_to_response('main.html', {'slider_img': slider_img, 'main_text_block': main_text_block}, context_instance=RequestContext(request))
 
 
 def news(request, news_id):

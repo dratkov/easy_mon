@@ -7,6 +7,7 @@ admin.autodiscover()
 
 
 urlpatterns = patterns('',
+    url(r'^loginza/', include('loginza.urls')),
     url(r'^accounts/', include('registration.urls')),
     (r'^accounts/profile/', profile),
     (r'^news/(\d+?)?\/?$', news),
