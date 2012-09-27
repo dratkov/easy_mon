@@ -1,4 +1,11 @@
-<form method="post" action="#">{% csrf_token %}{% csrf_token %}
-	{{ form }}
-	<input type="submit" value="Зарегистрироваться" />
-</form>
+{% extends 'base.html'  %}
+{% block content %}
+<div id="maininner" class="grid-box">
+	<section id="content" class="grid-block">
+	<form method="post" action="#">{% csrf_token %}{% csrf_token %}
+		{{ form }}
+		<input type="submit" value="Зарегистрироваться" />
+	</form>
+	</section>
+</div>
+{% endblock %}
