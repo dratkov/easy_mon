@@ -8,7 +8,7 @@
 
       <script type="text/javascript" src="/static/js/jquery.js"></script>
         <script type="text/javascript" src="/static/js/widgetkit.js"></script>
-
+	<script src="/static/js/general.js"></script>
 
 </head>
 
@@ -47,15 +47,17 @@
 			<header id="header">
 				<div id="headerbar" class="grid-block"><a id="logo" href="/"><img src="/static/img/logo.png" width="300" height="90" alt="logo"></a><div class="left"><div class="module   deepest"></div></div>
 				</div>
+				{% load my_tags %}
+
 				<div id="menubar" class="grid-block">
 					<nav id="menu">
 						<ul class="menu menu-dropdown">
-							<li class="level1 item1 active current">
-								<a class="level1 active current" href="/"><span>Главная</span></a>
+							<li class="level1 item1 {% if request.get_full_path == "/" %} active current{% endif %}">
+							<a class="level1{% if request.get_full_path == "/" %} active current{% endif %}" href="/"><span>Главная</span></a>
 							</li>
 							{% for m in menu_res %}
-								<li class="level1 item1 active current">
-								<a class="level1 active current" {% if m.href|length > 0 %}target="_blank" {% endif %} href="{% if m.href|length > 0 %}{{ m.href }}{% else %}/pages/{{ m.id }}/{% endif %}"><span>{{ m.title }}</span></a>
+							<li class="level1 item1i {% main_menu_active request m.id %}">
+							<a class="level1 {% main_menu_active request m.id %}" {% if m.href|length > 0 %}target="_blank" {% endif %} href="{% if m.href|length > 0 %}{{ m.href }}{% else %}/pages/{{ m.id }}/{% endif %}"><span>{{ m.title }}</span></a>
 								</li>
 							{% endfor %}
 						</ul>
