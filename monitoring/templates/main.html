@@ -23,18 +23,16 @@
 </div>
 </div>
 </section>
-</div>
-
 {% if main_text_block %}
-<div id="maininner" class="grid-box">
 	<section id="content" class="white">
 	<header>
 	<h1 class="title">{{ main_text_block.title }}</h1>
 	</header>
 		{{ main_text_block.text|safe }}
 	</section>
-</div>
 {% endif %}
+</div>
+
 
 <aside id="sidebar-a" class="grid-box">
 {% include 'b_news.html' %}
