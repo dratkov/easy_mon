@@ -2,9 +2,9 @@
 {% block content %}
 <div id="maininner" class="grid-box">
 	<section id="content" class="grid-block">
-	<form method="post" action="#">{% csrf_token %}{% csrf_token %}
+	<form class="style" method="post" action="#">{% csrf_token %}{% csrf_token %}
 		{{ form }}
-		<input type="submit" value="Зарегистрироваться" />
+		<button type="submit">Зарегистрироваться</button>
 	</form>
 	</section>
 </div>
