@@ -84,8 +84,11 @@ def news(request, news_id):
     return render_to_response('news.html', {'list_article': list_article, 'article': article, 'news_id': news_id}, context_instance=RequestContext(request))
 
 
-def page_from_menu(request, page_id):
-    page_from_menu = Menu.objects.get(id=page_id)
+def page_from_menu(request, page_alias):
+    import re
+    page_alias = re.sub('\/$', '', page_alias)
+    page_from_menu = Menu.objects.get(href="/"+page_alias+"/")
+    print page_alias
     return render_to_response('page_from_menu.html', {'page_from_menu': page_from_menu}, context_instance=RequestContext(request))
 
 

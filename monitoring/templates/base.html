@@ -38,9 +38,6 @@
 							<a href="/accounts/login/">Войти</a>
 						{% endif %}
 						</li>
-						<li class="level1">
-						<a href="{% url monitoring.views.news %}">Новости</a>
-						</li>
 					</ul>
 				</div>
 			</div>								
@@ -63,8 +60,8 @@
 							<a class="level1{% if request.get_full_path == "/" %} active current{% endif %}" href="/"><span>Главная</span></a>
 							</li>
 							{% for m in menu_res %}
-							<li class="level1 item1i {% main_menu_active request m.id %}">
-							<a class="level1 {% main_menu_active request m.id %}" {% if m.href|length > 0 %}target="_blank" {% endif %} href="{% if m.href|length > 0 %}{{ m.href }}{% else %}/pages/{{ m.id }}/{% endif %}"><span>{{ m.title }}</span></a>
+							<li class="level1 item1i {% main_menu_active request m.href %}">
+							<a class="level1 {% main_menu_active request m.href %}" {% if m.href|length > 0 and m.href|first == "h" %}target="_blank" {% endif %} href="{% if m.href|length > 0 %}{{ m.href }}{% else %}/pages/{{ m.id }}/{% endif %}"><span>{{ m.title }}</span></a>
 								</li>
 							{% endfor %}
 						</ul>
