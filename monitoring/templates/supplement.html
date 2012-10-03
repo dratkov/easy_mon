@@ -1,0 +1,85 @@
+{% extends 'base.html'  %}
+{% block content %}
+
+<div id="maininner" class="grid-box">
+	<section id="content" class="grid-block white">
+	<div>
+		<div id="yoo-zoo" class="yoo-zoo download-default download-default-frontpage">
+			{% if supplement_id %}
+			<div class="item">
+				<h1 class="pos-title">{{ supplements_res.title }}</h1>
+
+				<div class="box">
+					<div class="pos-media"><img src="/media/{{ supplements_res.icon }}"></div>
+					<ul class="pos-specification">
+						<li class="element element-itemmodified  first">
+						<strong>Дата: </strong>{{ supplements_res.updated }}
+						</li>	 
+						<li class="element element-download ">
+							<strong>Кол-во покупок: </strong>{{ supplements_res.buy_count }}
+						</li>
+						<li class="element element-text ">
+							<strong>Version: </strong>{{ supplements_res.version }}
+						</li>
+					</ul>
+
+					<div class="pos-bottom">
+						<div class="element element-textarea first last">
+							<div>{{ supplements_res.description }}
+								<br/><br/>
+							</div>
+						</div>
+					</div>
+					{% for img in supplements_res.screenshots.all %}
+						<a class="lightbox" href="/media/{{ img.big_img }}"><img src="/media/{{ img.small_img }}" /></a>
+					{% endfor %}
+					<script type="text/javascript">
+						jQuery('a.lightbox').lightBox({imageBtnClose:'/static/img/lightbox/lightbox-btn-close.gif'});
+					</script>
+
+				</div>
+
+
+
+			</div>
+			{% else %}
+			<div class="items">
+			{% for s in supplements_res %}
+			{% if forloop.counter0|divisibleby:"2" %}
+				<div class="row {% if forloop.first %}first-row{% endif %}">
+			{% endif %}		
+				<div class="width50 {% if forloop.counter0|divisibleby:"2" %}first-cell{% endif %}">
+				
+					<div class="teaser-item">
+						<div class="pos-media media-left">
+							<a title="" href="{% url monitoring.views.supplement s.id %}" class="yoo-zoo element-download-type element-download-type-rar"><img src="/media/{{ s.icon }}" /></a>
+			       			</div>
+						<h2 class="pos-title"> <a href="{% url monitoring.views.supplement s.id %}" title="Drupal Package">{{ s.title }}</a> </h2>
+						<p class="pos-meta">Обновлен {{ s.updated }}</p>
+						<ul class="pos-specification">
+							<li class="element element-text  first">{{ s.short_description }}</li>
+							<li class="element element-text  last">
+							<strong>Version: </strong>{{ s.version }}</li>
+						</ul>
+						{% if False %}
+						<div class="pos-button">
+							<a title="" href="1" class="yoo-zoo element-download-button"><span><span>Download</span></span></a>
+			       			</div>
+						{% endif %}
+					</div>
+				</div>
+		
+			{% if not forloop.counter0|divisibleby:"2" or forloop.last %}
+       				</div>
+			{% endif %}
+		{% endfor %}
+	</div>
+	{% endif %}
+</div>
+
+	</div>
+	</section>
+</div>
+</div>
+</div>
+{% endblock %}

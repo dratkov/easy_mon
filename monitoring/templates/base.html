@@ -3,16 +3,23 @@
 <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <title>{{ site_title }}</title>
-<link rel="stylesheet" href="/static/css/general.css">
-<link rel="stylesheet" href="/static/css/widgetkit.css">
-
       <script type="text/javascript" src="/static/js/jquery.js"></script>
-        <script type="text/javascript" src="/static/js/widgetkit.js"></script>
 	<script src="/static/js/general.js"></script>
+	<link rel="stylesheet" href="/static/css/general.css">
+{% if not is_supplement_page %}
+	<link rel="stylesheet" href="/static/css/widgetkit.css">
+        <script type="text/javascript" src="/static/js/widgetkit.js"></script>
+{% endif %}
+{% if is_supplement_page %}
+	<link rel="stylesheet" href="/static/css/supplement.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/jquery.lightbox-0.5.css" media="screen" />
+	<script type="text/javascript" src="/static/js/jquery.lightbox-0.5.js"></script>
+{% endif %}
+
 
 </head>
 
-<body id="page" class="page sidebar-a-right sidebar-b-right isblog content- " data-config="{&quot;twitter&quot;:0,&quot;plusone&quot;:0}">
+<body id="page" class="page sidebar-a-right sidebar-b-right isblog content-{% if is_supplement_page %}whitebg{% endif %}" data-config="{&quot;twitter&quot;:0,&quot;plusone&quot;:0}">
 <div id="block-toolbar">
 	<div class="wrapper">
 		<div id="toolbar" class="grid-block">
