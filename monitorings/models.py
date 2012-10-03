@@ -74,7 +74,7 @@ class TextBlockAdminForm(ModelForm):
 class Menu(models.Model):
     title = models.CharField(verbose_name="Заголовок", max_length="100")
     text = models.TextField(verbose_name="Текст или ссылка", blank=True)
-    href = models.URLField(verbose_name="Меню - ссылка", max_length="200", blank=True)
+    href = models.CharField(verbose_name="Меню - ссылка", max_length="200", blank=True)
     order = models.SmallIntegerField(verbose_name="Порядок сортировки в меню, целое число от 0 до 20, с большим числом в начале")
 
     def __unicode__(self):
@@ -91,3 +91,69 @@ class MenuAdminForm(ModelForm):
           widgets = {
                'text': Textarea(attrs={'cols': 120, 'rows': 30}),
           }
+
+class SupplementScreenshot(models.Model):
+    title = models.CharField(verbose_name="Название", max_length="100")
+    small_img = models.ImageField(upload_to="template_screenshot", verbose_name="Маленькая картинка")
+    big_img = models.ImageField(upload_to="template_screenshot", verbose_name="Оригинальный размер")
+
+    def __unicode__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = "Скриншот для дополнений"
+        verbose_name_plural = "Скриншоты для дополнений"
+
+
+class Supplement(models.Model):
+    title = models.CharField(verbose_name="Название", max_length="100")
+    icon = models.ImageField(upload_to='supplement_icon', verbose_name="Иконка")
+    updated = models.DateField(verbose_name="Дата обновления")
+    buy_count = models.SmallIntegerField(verbose_name="Кол-во покупок")
+    version = models.CharField(max_length="50", verbose_name="Версия")
+    short_description = models.CharField(max_length="250", verbose_name="Краткое описание")
+    description = models.TextField(verbose_name="Описание")
+    price = models.SmallIntegerField(verbose_name="Цена, в рублях, целое число")
+    key = models.CharField(max_length="100", verbose_name="Ключик")
+    screenshots = models.ManyToManyField(SupplementScreenshot)
+
+    def __unicode__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = "Дополнение"
+        verbose_name_plural = "Дополнения"
+
+
+class TemplateScreenshot(models.Model):
+    title = models.CharField(verbose_name="Название", max_length="100")
+    small_img = models.ImageField(upload_to="template_screenshot", verbose_name="Маленькая картинка")
+    big_img = models.ImageField(upload_to="template_screenshot", verbose_name="Оригинальный размер")
+
+    def __unicode__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = "Скриншот для шаблонов"
+        verbose_name_plural = "Скриншоты для шаблонов"
+
+
+class Template(models.Model):
+    title = models.CharField(verbose_name="Название", max_length="100")
+    icon = models.ImageField(upload_to='template_icon', verbose_name="Иконка")
+    updated = models.DateField(verbose_name="Дата обновления")
+    buy_count = models.SmallIntegerField(verbose_name="Кол-во покупок")
+    version = models.CharField(max_length="50", verbose_name="Версия")
+    short_description = models.CharField(max_length="250", verbose_name="Краткое описание")
+    description = models.TextField(verbose_name="Описание")
+    price = models.SmallIntegerField(verbose_name="Цена, в рублях, целое число")
+    template_file = models.FileField(upload_to="templates", verbose_name="Файл")
+    screenshots = models.ManyToManyField(TemplateScreenshot)
+    def __unicode__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = "Шаблон"
+        verbose_name_plural = "Шаблоны"
+
+

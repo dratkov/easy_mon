@@ -1,5 +1,5 @@
 from django.contrib import admin
-from monitorings.models import Article, ArticleAdminForm, SliderImg, Params, TextBlock, Menu, MenuAdminForm, TextBlockAdminForm
+from monitorings.models import Article, ArticleAdminForm, SliderImg, Params, TextBlock, Menu, MenuAdminForm, TextBlockAdminForm,  Supplement, Template, TemplateScreenshot
 
 
 class ArticleAdmin(admin.ModelAdmin):
@@ -31,3 +31,6 @@ admin.site.register(SliderImg, SliderImgAdmin)
 admin.site.register(Params)
 admin.site.register(TextBlock, TextBlockAdmin)
 admin.site.register(Menu, MenuAdmin)
+admin.site.register(Supplement)
+admin.site.register(Template)
+admin.site.register(TemplateScreenshot)

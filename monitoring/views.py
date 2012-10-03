@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render_to_response, redirect
-from monitorings.models import SliderImg, Article, Menu, TextBlock
+from monitorings.models import SliderImg, Article, Menu, TextBlock, Supplement, Template
 from django.contrib import messages, auth
 
 from loginza import signals, models
@@ -87,3 +87,37 @@ def news(request, news_id):
 def page_from_menu(request, page_id):
     page_from_menu = Menu.objects.get(id=page_id)
     return render_to_response('page_from_menu.html', {'page_from_menu': page_from_menu}, context_instance=RequestContext(request))
+
+
+def supplement(request, supplement_id):
+    supplements_res = None
+    supplements_count = 1
+    if supplement_id > 0:
+        supplements_res = Supplement.objects.get(id=int(supplement_id))
+    else:
+        supplements_res = Supplement.objects.all()
+        supplements_count = len(supplements_res)
+    from math import ceil
+    cols_count = 2.0
+    row_count = 1
+    if supplements_count > cols_count:
+        row_count = int(ceil(supplements_count / cols_count))
+    return render_to_response('supplement.html', {'supplements_res': supplements_res, 'is_supplement_page': True, 'row_count': range(row_count),
+        'cols_count_range': range(int(cols_count)), 'supplement_id': supplement_id}, context_instance=RequestContext(request))
+
+
+def template(request, template_id):
+    templates_res = None
+    templates_count = 1
+    if template_id > 0:
+        templates_res = Template.objects.get(id=int(template_id))
+    else:
+        templates_res = Template.objects.all()
+        templates_count = len(templates_res)
+    from math import ceil
+    cols_count = 2.0
+    row_count = 1
+    if templates_count > cols_count:
+        row_count = int(ceil(templates_count / cols_count))
+    return render_to_response('template.html', {'templates_res': templates_res, 'is_supplement_page': True, 'row_count': range(row_count),
+        'cols_count_range': range(int(cols_count)), 'template_id': template_id}, context_instance=RequestContext(request))
