@@ -31,6 +31,20 @@ def complete_registration(request):
             user_map = models.UserMap.objects.get(identity__id=identity_id)
         except models.UserMap.DoesNotExist:
             return http.HttpResponseForbidden(u'Вы попали сюда по ошибке')
+        user_map.user.username = user_map.user.username
+        user_map.user.email = user_map.user.email
+        user_map.user.save()
+
+        user_map.verified = True
+        user_map.save()
+
+        user = auth.authenticate(user_map=user_map)
+        auth.login(request, user)
+
+        messages.info(request, u'Добро пожаловать!')
+        del request.session['users_complete_reg_id']
+        return redirect('/')
+        """
         if request.method == 'POST':
             form = CompleteReg(user_map.user.id, request.POST)
             if form.is_valid():
@@ -52,7 +66,7 @@ def complete_registration(request):
         return render_to_response('registration/complete_reg.html',
                {'form': form},
                context_instance=RequestContext(request),)
-
+               """
 
 @login_required
 def profile(request):
