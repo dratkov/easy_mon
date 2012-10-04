@@ -22,6 +22,9 @@
 							<strong>Version: </strong>{{ templates_res.version }}
 						</li>
 					</ul>
+					<div class="pos-button">
+						<a title="" href="/media/{{ templates_res.template_file }}" class="yoo-zoo element-download-button"><span><span>Скачать</span></span></a>
+			       		</div>
 
 					<div class="pos-bottom">
 						<div class="element element-textarea first last">
@@ -60,11 +63,9 @@
 							<li class="element element-text  last">
 							<strong>Version: </strong>{{ s.version }}</li>
 						</ul>
-						{% if False %}
 						<div class="pos-button">
-							<a title="" href="1" class="yoo-zoo element-download-button"><span><span>Download</span></span></a>
+							<a title="" href="/media/{{ s.template_file }}" class="yoo-zoo element-download-button"><span><span>Скачать</span></span></a>
 			       			</div>
-						{% endif %}
 					</div>
 				</div>
 		
