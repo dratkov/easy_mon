@@ -52,10 +52,10 @@ h3{margin-top:0px;font-size:21px;font-weight:normal}#yoo-zoo .item div.pos-top
 div.box{padding:15px
 5px 0px 5px;background:url("/static/img/item_bg.png") 0 0 repeat-x;overflow:hidden}#yoo-zoo .item div.pos-media{margin-right:15px;float:left}#yoo-zoo .item div.pos-media
 .element{margin-bottom:15px}#yoo-zoo .item div.pos-right{min-width:150px;margin-right:20px;padding:5px;border:1px
-solid #c8c8c8;background:#fff;float:right}#yoo-zoo .item div.pos-right div.rating div.vote-message{margin-top:3px}#yoo-zoo .item ul.pos-specification{list-style:none;width:400px;margin:5px
+solid #c8c8c8;background:#fff;float:right}#yoo-zoo .item div.pos-right div.rating div.vote-message{margin-top:3px}#yoo-zoo .item ul.pos-specification{list-style:none;width:480px;margin:5px
 0px 0px 0px;padding:0px;overflow:hidden}#yoo-zoo .item ul.pos-specification
-li{width:200px;margin:0px;padding:0px;float:left}#yoo-zoo .item ul.pos-specification
-strong{display:inline-block;width:80px}#yoo-zoo .item div.pos-button{margin:10px
+li{width:240px;margin:0px;padding:0px;float:left}#yoo-zoo .item ul.pos-specification
+strong{display:inline-block;width:100px}#yoo-zoo .item div.pos-button{margin:10px
 0px 0px 0px;overflow:hidden}#yoo-zoo .item div.pos-bottom
 .element{margin-top:20px;overflow:hidden}#yoo-zoo .item div.pos-bottom .element-textarea>*{margin:0px
 0px 15px 0px}#yoo-zoo .item div.pos-bottom .element-textarea *:last-child{margin-bottom:0px}#yoo-zoo .mysubmissions > h1.headline,
