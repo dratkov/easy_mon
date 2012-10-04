@@ -31,8 +31,8 @@ def complete_registration(request):
             user_map = models.UserMap.objects.get(identity__id=identity_id)
         except models.UserMap.DoesNotExist:
             return http.HttpResponseForbidden(u'Вы попали сюда по ошибке')
-        user_map.user.username = user_map.user.username
-        user_map.user.email = user_map.user.email
+        if not user_map.user.username:
+            user_map.user.username = user_map.user.email.split('@')[0]
         user_map.user.save()
 
         user_map.verified = True
