@@ -2,7 +2,7 @@
 <html lang="en-gb" dir="ltr">
 <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<title>{{ site_title }}</title>
+<title>{{ site_title|safe }}</title>
       <script type="text/javascript" src="/static/js/jquery.js"></script>
 	<script src="/static/js/general.js"></script>
 	<link rel="stylesheet" href="/static/css/general.css">
@@ -20,7 +20,7 @@
 
 </head>
 
-<body id="page" class="page sidebar-a-right sidebar-b-right isblog content-{% if is_supplement_page %}whitebg{% endif %}" data-config="{&quot;twitter&quot;:0,&quot;plusone&quot;:0}">
+<body id="page" class="page sidebar-a-right sidebar-b-right isblog content-{% if is_white_bg %}whitebg{% endif %}" data-config="{&quot;twitter&quot;:0,&quot;plusone&quot;:0}">
 <div id="block-toolbar">
 	<div class="wrapper">
 		<div id="toolbar" class="grid-block">

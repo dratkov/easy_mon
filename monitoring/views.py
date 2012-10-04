@@ -95,7 +95,7 @@ def news(request, news_id):
         article = Article.objects.get(id=news_id)
     else:
         list_article = Article.objects.order_by('-date_published')
-    return render_to_response('news.html', {'list_article': list_article, 'article': article, 'news_id': news_id}, context_instance=RequestContext(request))
+    return render_to_response('news.html', {'list_article': list_article, 'article': article, 'news_id': news_id, 'is_white_bg': True}, context_instance=RequestContext(request))
 
 
 def page_from_menu(request, page_alias):
@@ -119,7 +119,7 @@ def supplement(request, supplement_id):
     row_count = 1
     if supplements_count > cols_count:
         row_count = int(ceil(supplements_count / cols_count))
-    return render_to_response('supplement.html', {'supplements_res': supplements_res, 'is_supplement_page': True, 'row_count': range(row_count),
+    return render_to_response('supplement.html', {'supplements_res': supplements_res, 'is_supplement_page': True, 'is_white_bg': True, 'row_count': range(row_count),
         'cols_count_range': range(int(cols_count)), 'supplement_id': supplement_id}, context_instance=RequestContext(request))
 
 
@@ -136,5 +136,5 @@ def template(request, template_id):
     row_count = 1
     if templates_count > cols_count:
         row_count = int(ceil(templates_count / cols_count))
-    return render_to_response('template.html', {'templates_res': templates_res, 'is_supplement_page': True, 'row_count': range(row_count),
+    return render_to_response('template.html', {'templates_res': templates_res, 'is_supplement_page': True, 'is_white_bg': True, 'row_count': range(row_count),
         'cols_count_range': range(int(cols_count)), 'template_id': template_id}, context_instance=RequestContext(request))

@@ -12,6 +12,7 @@
 			{{ article.text }}
 		</div>
 	{% else %}
+		<div class="content clearfix">
 		<div class="grid-box width50">		
 			{% for a in list_article %}
 				{% if forloop.counter0|divisibleby:"2" != 0  %}
@@ -38,6 +39,7 @@
 				{% endif %}
 			{% endfor %}
 		<div>
+		</div>
 	{% endif %}
 	</section>
 </div>
