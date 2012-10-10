@@ -7,6 +7,20 @@
 			<li><a href="/accounts/password/change/">Сменить пароль</a></li>
 			<li><a href="/accounts/password/reset/">Сбросить пароль</a></li>
 		</ul>  
+
+		    <form method="post" action="http://test.robokassa.ru/Index.aspx">
+			<input type="hidden" name="MrchLogin" value="{{ mrch_login }}" />
+			<input type="hidden" name="OutSum" value="{{ amount }}" />
+			<input type="hidden" name="InvId" value="{{ inv_id }}" />
+			<input type="hidden" name="Desc" value="Покупка шаблона" />
+			<input type="hidden" name="SignatureValue" value="{{ signature }}" />
+						         
+			<input type="submit" value="Пополнить счет" />
+		     
+		    </form>
+
+
+
 	</section>
 </div>
 {% endblock %}

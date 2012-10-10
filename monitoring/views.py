@@ -44,33 +44,41 @@ def complete_registration(request):
         messages.info(request, u'Добро пожаловать!')
         del request.session['users_complete_reg_id']
         return redirect('/')
-        """
-        if request.method == 'POST':
-            form = CompleteReg(user_map.user.id, request.POST)
-            if form.is_valid():
-                user_map.user.username = form.cleaned_data['username']
-                user_map.user.email = form.cleaned_data['email']
-                user_map.user.save()
+#        if request.method == 'POST':
+#            form = CompleteReg(user_map.user.id, request.POST)
+#            if form.is_valid():
+#                user_map.user.username = form.cleaned_data['username']
+#                user_map.user.email = form.cleaned_data['email']
+#                user_map.user.save()
+#
+#                user_map.verified = True
+#                user_map.save()
+#
+#                user = auth.authenticate(user_map=user_map)
+#                auth.login(request, user)
+#
+#                messages.info(request, u'Добро пожаловать!')
+#                del request.session['users_complete_reg_id']
+#                return redirect(_return_path(request))
+#        else:
+#            form = CompleteReg(user_map.user.id, initial={'username': user_map.user.username, 'email': user_map.user.email})
+#        return render_to_response('registration/complete_reg.html',
+#               {'form': form},
+#               context_instance=RequestContext(request),)
 
-                user_map.verified = True
-                user_map.save()
-
-                user = auth.authenticate(user_map=user_map)
-                auth.login(request, user)
-
-                messages.info(request, u'Добро пожаловать!')
-                del request.session['users_complete_reg_id']
-                return redirect(_return_path(request))
-        else:
-            form = CompleteReg(user_map.user.id, initial={'username': user_map.user.username, 'email': user_map.user.email})
-        return render_to_response('registration/complete_reg.html',
-               {'form': form},
-               context_instance=RequestContext(request),)
-               """
 
 @login_required
 def profile(request):
-    return render_to_response('registration/profile.html', {'user': request.user}, context_instance=RequestContext(request))
+    login = "DJon1"
+    amount = str(500) + ".00"
+    inv_id = 1
+    pwd1 = "master11"
+    import md5
+    print request.GET['q']
+    m = md5.new()
+    m.update(login + ":" + str(amount) + ":" + str(inv_id) + ":" + str(pwd1))
+    return render_to_response('registration/profile.html', {'user': request.user, 'signature': m.hexdigest(), 'mrch_login': login, 'inv_id': inv_id,
+        'amount': amount, 'pwd1': pwd1}, context_instance=RequestContext(request))
 
 
 def home(request):
@@ -102,8 +110,23 @@ def page_from_menu(request, page_alias):
     import re
     page_alias = re.sub('\/$', '', page_alias)
     page_from_menu = Menu.objects.get(href="/"+page_alias+"/")
-    print page_alias
     return render_to_response('page_from_menu.html', {'page_from_menu': page_from_menu}, context_instance=RequestContext(request))
+
+
+def robokassa(request, url_part):
+    if  url_part == "result":
+        inv_id = request.POST['InvId']
+        pwd2 = "master22"
+        summa = float(500)
+        if summa != float(request.POST['OutSum']):
+            redirect("/error/summa/")
+        import md5
+        m = md5.new()
+        m.update(request.POST['OutSum'] + ":" + str(InvId) + ":" + str(pwd2))
+        if request.POST['SignatureValue'].lower() != m.hexdigest().lower():
+            redirect("/error/signature/")
+        redirect("/ok/")
+    return render_to_response('page_from_menu.html', {}, context_instance=RequestContext(request))
 
 
 def supplement(request, supplement_id):
