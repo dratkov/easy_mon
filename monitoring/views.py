@@ -74,7 +74,6 @@ def profile(request):
     inv_id = 1
     pwd1 = "master11"
     import md5
-    print request.GET['q']
     m = md5.new()
     m.update(login + ":" + str(amount) + ":" + str(inv_id) + ":" + str(pwd1))
     return render_to_response('registration/profile.html', {'user': request.user, 'signature': m.hexdigest(), 'mrch_login': login, 'inv_id': inv_id,
