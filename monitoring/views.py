@@ -9,6 +9,8 @@ from django import http
 from django.template.context import RequestContext
 from django.contrib.auth.decorators import login_required
 
+from django.views.decorators.csrf import csrf_protect
+
 from .forms import CompleteReg
 
 
@@ -112,12 +114,15 @@ def page_from_menu(request, page_alias):
     return render_to_response('page_from_menu.html', {'page_from_menu': page_from_menu}, context_instance=RequestContext(request))
 
 
+@csrf_protect
 def robokassa(request, url_part):
     if  url_part == "result":
-        inv_id = request.POST['InvId']
+        inv_id = 0
+        if request.POST.has_key('InvId'):
+            inv_id = request.POST['InvId']
         pwd2 = "master22"
         summa = float(500)
-        if summa != float(request.POST['OutSum']):
+        if request.POST.has_key('OutSum') and summa != float(request.POST['OutSum']):
             redirect("/error/summa/")
         import md5
         m = md5.new()
