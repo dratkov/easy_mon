@@ -116,19 +116,19 @@ def page_from_menu(request, page_alias):
 
 @csrf_protect
 def robokassa(request, url_part):
+    from django.http import HttpResponse
     if  url_part == "result":
-        inv_id = 0
-        if request.POST.has_key('InvId'):
-            inv_id = request.POST['InvId']
+        inv_id = ""
+        inv_id = request.GET['InvId']
         pwd2 = "master22"
         summa = float(500)
-        if request.POST.has_key('OutSum') and summa != float(request.POST['OutSum']):
-            redirect("/error/summa/")
+        if summa != float(request.GET['OutSum']):
+            return HttpResponse("error summa")
         import md5
         m = md5.new()
-        m.update(request.POST['OutSum'] + ":" + str(InvId) + ":" + str(pwd2))
-        if request.POST['SignatureValue'].lower() != m.hexdigest().lower():
-            redirect("/error/signature/")
+        m.update(request.GET['OutSum'] + ":" + str(InvId) + ":" + str(pwd2))
+        if request.GET['SignatureValue'].lower() != m.hexdigest().lower():
+            return HttpResponse("error signature")
         return HttpResponse("OK" + str(inv_id))
     return render_to_response('page_from_menu.html', {}, context_instance=RequestContext(request))
 
