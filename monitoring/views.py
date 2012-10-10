@@ -124,7 +124,7 @@ def robokassa(request, url_part):
         m.update(request.POST['OutSum'] + ":" + str(InvId) + ":" + str(pwd2))
         if request.POST['SignatureValue'].lower() != m.hexdigest().lower():
             redirect("/error/signature/")
-        redirect("/ok/")
+        return HttpResponse("OK" + str(inv_id))
     return render_to_response('page_from_menu.html', {}, context_instance=RequestContext(request))
 
 
