@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render_to_response, redirect
-from monitorings.models import SliderImg, Article, Menu, TextBlock, Supplement, Template
+from monitorings.models import SliderImg, Article, Menu, TextBlock, Supplement, Template, Transaction
 from django.contrib import messages, auth
 
 from loginza import signals, models
@@ -10,6 +10,7 @@ from django.template.context import RequestContext
 from django.contrib.auth.decorators import login_required
 
 from django.views.decorators.csrf import csrf_protect
+from profile.models import Profile
 
 from .forms import CompleteReg
 
@@ -25,6 +26,18 @@ def loginza_auth_handler(sender, user, identity, **kwargs):
 signals.authenticated.connect(loginza_auth_handler)
 
 
+from registration.signals import user_activated
+from django.contrib.auth import login
+
+def login_on_activation(sender, user, request, **kwargs):
+    profile = Profile(user=user, summa=0)
+    profile.save()
+    user.backend='django.contrib.auth.backends.ModelBackend'
+    login(request,user)
+
+user_activated.connect(login_on_activation)
+
+
 def complete_registration(request):
         if request.user.is_authenticated():
             return http.HttpResponseForbidden(u'Вы попали сюда по ошибке')
@@ -36,7 +49,8 @@ def complete_registration(request):
         if not user_map.user.username:
             user_map.user.username = user_map.user.email.split('@')[0]
         user_map.user.save()
-
+        profile = Profile(user=user_map.user, summa=0)
+        profile.save()
         user_map.verified = True
         user_map.save()
 
@@ -70,16 +84,24 @@ def complete_registration(request):
 
 
 @login_required
-def profile(request):
-    login = "DJon1"
-    amount = str(500) + ".00"
-    inv_id = 1
-    pwd1 = "master11"
-    import md5
-    m = md5.new()
-    m.update(login + ":" + str(amount) + ":" + str(inv_id) + ":" + str(pwd1))
-    return render_to_response('registration/profile.html', {'user': request.user, 'signature': m.hexdigest(), 'mrch_login': login, 'inv_id': inv_id,
-        'amount': amount, 'pwd1': pwd1}, context_instance=RequestContext(request))
+def profile(request, sub_url):
+    if sub_url == "recharge":
+        if request.method == "GET":
+            return render_to_response('registration/profile.html', {'sub_url': sub_url})
+        else:
+            summa = request.POST['summa']
+            transaction = Transaction(user_id=request.user.id, completed=False, summa=int(summa))
+            transaction.save()
+            login = "DJon1"
+            inv_id = transaction.id
+            pwd1 = "master11"
+            import md5
+            m = md5.new()
+            summa = str(summa) + ".00"
+            m.update(login + ":" + summa + ":" + str(inv_id) + ":" + str(pwd1))
+            return render_to_response('registration/pay_robokassa.html', {'user': request.user, 'signature': m.hexdigest(), 'mrch_login': login, 'inv_id': inv_id,
+            'summa': summa, 'pwd1': pwd1}, context_instance=RequestContext(request))
+    return render_to_response('registration/profile.html', {'user': request.user, 'sub_url': sub_url}, context_instance=RequestContext(request))
 
 
 def home(request):
@@ -114,23 +136,27 @@ def page_from_menu(request, page_alias):
     return render_to_response('page_from_menu.html', {'page_from_menu': page_from_menu}, context_instance=RequestContext(request))
 
 
+@login_required
 @csrf_protect
 def robokassa(request, url_part):
     from django.http import HttpResponse
     if  url_part == "result":
         inv_id = ""
         inv_id = request.GET['InvId']
+        transaction = Transaction.objects.get(id=inv_id, user_id=request.user.id, complete=False)
+        if transaction is None:
+            return HttpResponse("error signature")
         pwd2 = "master22"
-        summa = float(500)
+        summa = float(transaction.summa)
         if summa != float(request.GET['OutSum']):
             return HttpResponse("error summa")
         import md5
         m = md5.new()
-        m.update(request.GET['OutSum'] + ":" + str(InvId) + ":" + str(pwd2))
+        m.update(request.GET['OutSum'] + ":" + str(inv_id) + ":" + str(pwd2))
         if request.GET['SignatureValue'].lower() != m.hexdigest().lower():
             return HttpResponse("error signature")
         return HttpResponse("OK" + str(inv_id))
-    return render_to_response('page_from_menu.html', {}, context_instance=RequestContext(request))
+    return render_to_response('page_from_menu.html', {})
 
 
 def supplement(request, supplement_id):

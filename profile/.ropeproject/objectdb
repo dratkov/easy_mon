@@ -1,10 +1,4 @@
-Ä}q(UC/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py}qUrender_to_responseqcrope.base.oi.memorydb
+Ä}q(UF/usr/local/lib/python2.7/dist-packages/django/contrib/auth/__init__.py}qUloginqcrope.base.oi.memorydb
 ScopeInfo
-q)Åq}qUbuiltinUstrÜq(UbuiltinqUdictq	UnoneÖq
-h
-tÜUunknownÖqs}qÜbsU9/home/dim/django-trunk/django/db/models/fields/related.py}q(U%SingleRelatedObjectDescriptor.__get__h)Åq}qUinstanceqUdefinedqU9/home/dim/django-trunk/django/db/models/fields/related.pyUSingleRelatedObjectDescriptorqáÜUunknownÖqháhs}qÜbU&SingleRelatedObjectDescriptor.__init__h)Åq}qhhU	fields.pyqU!AutoSingleRelatedObjectDescriptorqáÜhÜhs}qÜbuU:/home/dim/django-trunk/django/db/models/fields/__init__.py}qUDateField.__init__h)Åq}q(hhU:/home/dim/django-trunk/django/db/models/fields/__init__.pyU	DateFieldqáÜhh
-h
-h
-h
-ths}qÜbsU3/home/dim/django-trunk/django/db/models/deletion.py}qUSETq h)Åq!}q"h
-ÖhU3/home/dim/django-trunk/django/db/models/deletion.pyUSET.set_on_deleteás}q#Übsu.
+q)Åq}qUunknownÖqhÜUunknownÖqs}q	ÜbsUD/usr/local/lib/python2.7/dist-packages/django/dispatch/dispatcher.py}q
+USignal.connecth)Åq}q(UinstanceqUdefinedqUD/usr/local/lib/python2.7/dist-packages/django/dispatch/dispatcher.pyUSignalqáÜhUviews.pyUlogin_on_activationqáUnoneÖqhhths}qÜbsUC/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py}qUrender_to_responseh)Åq}qUbuiltinUstrÜ(UbuiltinUdictUnoneÖqhtÜUunknownÖs}qÜbsUJ/usr/local/lib/python2.7/dist-packages/django/db/models/fields/__init__.py}qUField.__init__h)Åq}q(hhUJ/usr/local/lib/python2.7/dist-packages/django/db/models/fields/__init__.pyUSmallIntegerFieldqáÜUbuiltinUstrÜqhhhhhhhhhhhhhhhhhhhhhths}qÜbsUC/usr/local/lib/python2.7/dist-packages/django/db/models/deletion.py}qUSETqh)Åq }q!hÖhUC/usr/local/lib/python2.7/dist-packages/django/db/models/deletion.pyUSET.set_on_deleteás}q"Übsu.

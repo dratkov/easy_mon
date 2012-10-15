@@ -1,0 +1,24 @@
+<html>
+	<head>
+		<title>test</title>
+		<script type="text/javascript">
+			function load() {
+				 window.document.robokassa.submit();
+				 return;
+			 }
+			 </script>
+	</head>
+	<body onload="load()">
+
+		    <form method="post" name="robokassa" action="http://test.robokassa.ru/Index.aspx">
+			<input type="hidden" name="MrchLogin" value="{{ mrch_login }}" />
+			<input type="hidden" name="OutSum" value="{{ summa }}" />
+			<input type="hidden" name="InvId" value="{{ inv_id }}" />
+			<input type="hidden" name="Desc" value="Пополнение счета" />
+			<input type="hidden" name="SignatureValue" value="{{ signature }}" />
+			<input type="submit" value="Пополнить счет" />
+		     
+		    </form>
+	</body>
+</html>
+

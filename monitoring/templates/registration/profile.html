@@ -2,23 +2,26 @@
 {% block content %}
 <div id="maininner" class="grid-box">
 	<section id="content" class="grid-block">
-		Здравствуйте, {{ user.username }}!
+	
+	<div class="breadcrumbs">
+		{% if sub_url %}<a href="/accounts/profile/">{% else %}<strong>{% endif %}Общая информация{% if sub_url %}</a>{% else %}</strong>{% endif %} | 
+		{% if sub_url != "recharge" %}<a href="/accounts/profile/recharge/">{% else %}<strong>{% endif %}Пополнить счет{% if sub_url != "recharge" %}</a>{% else %}</strong>{% endif %}
+	</div>
+		{% if sub_url == None %}
+		Здравствуйте, {{ user.username }}!<br/>
+		Ваша сумма на счету: {{ user.get_profile.summa }} руб.
 		<ul>
 			<li><a href="/accounts/password/change/">Сменить пароль</a></li>
 			<li><a href="/accounts/password/reset/">Сбросить пароль</a></li>
 		</ul>  
-
-		    <form method="post" action="http://test.robokassa.ru/Index.aspx">
-			<input type="hidden" name="MrchLogin" value="{{ mrch_login }}" />
-			<input type="hidden" name="OutSum" value="{{ amount }}" />
-			<input type="hidden" name="InvId" value="{{ inv_id }}" />
-			<input type="hidden" name="Desc" value="Покупка шаблона" />
-			<input type="hidden" name="SignatureValue" value="{{ signature }}" />
-						         
+		{% endif %}
+		{% if sub_url == "recharge" %}
+		    <form method="post" action="#">{% csrf_token %}
+			<input name="summa" value="" size="7" />		         
+			<label>руб.</label>
 			<input type="submit" value="Пополнить счет" />
-		     
 		    </form>
-
+		{% endif %}
 
 
 	</section>

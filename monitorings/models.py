@@ -50,6 +50,13 @@ class Params(models.Model):
         return self.key
 
 
+class Transaction(models.Model):
+    user_id = models.IntegerField()
+    completed = models.BooleanField()
+    date_created = models.DateTimeField(auto_now=True)
+    summa = models.SmallIntegerField()
+
+
 class TextBlock(models.Model):
     text = models.TextField(verbose_name="Текст")
     title = models.CharField(max_length=100, verbose_name="Заголовок блока")
